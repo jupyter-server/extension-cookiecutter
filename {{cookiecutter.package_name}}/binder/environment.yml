@@ -1,10 +1,10 @@
-# a mybinder.org-ready environment for demoing {{ cookiecutter.python_name }}
+# a mybinder.org-ready environment for demoing {{ cookiecutter.package_name }}
 # this environment may also be used locally on Linux/MacOS/Windows, e.g.
 #
 #   conda env update --file binder/environment.yml
-#   conda activate {{ cookiecutter.python_name | replace('_', '-') }}-demo
+#   conda activate {{ cookiecutter.package_name | replace('_', '-') }}-demo
 #
-name: {{ cookiecutter.python_name | replace('_', '-') }}-demo
+name: {{ cookiecutter.package_name | replace('_', '-') }}-demo
 
 channels:
   - conda-forge
@@ -13,8 +13,6 @@ dependencies:
   # runtime dependencies
   - python >=3.8,<3.9.0a0
   - jupyterlab >=3,<4.0.0a0
-  # labextension build dependencies
-  - nodejs >=14,<15
   - pip
   - wheel
   # additional packages for demos

@@ -1,11 +1,8 @@
 {
-  "kind": ["frontend", "server", "theme"],
   "author_name": "",
   "author_email": "",
-  "labextension_name": "{% if cookiecutter.kind == 'theme' %}mytheme{% else %}myextension{% endif %}",
-  "python_name": "{{ cookiecutter.labextension_name | replace('-', '_') }}",
-  "project_short_description": "A JupyterLab extension.",
-  "has_settings": "n",
+  "package_name": "my_server_extension",
+  "project_short_description": "A Jupyter Server extension.",
   "has_binder": "n",
-  "repository": "https://github.com/github_username/{{ cookiecutter.labextension_name }}"
+  "repository": "https://github.com/github_username/{{ cookiecutter.package_name }}"
 }
