@@ -8,7 +8,7 @@
 {% endif %}
 ## Requirements
 
-- JupyterLab >= 3.0
+- Jupyter Server
 
 ## Install
 
