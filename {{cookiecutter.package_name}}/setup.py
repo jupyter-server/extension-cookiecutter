@@ -19,9 +19,11 @@ def get_data_files():
 cmdclass = create_cmdclass(data_files_spec=get_data_files())
 
 setup_args = dict(
+    author="{{cookiecutter.author_name}}",
+    author_email='{{cookiecutter.author_email}}',
     name="{{cookiecutter.package_name}}",
     version=VERSION,
-    description="{{cookiecutter.package_name}}",
+    description="{{cookiecutter.project_short_description}}",
     python_requires=">=3.6",
     packages=setuptools.find_packages(),
     install_requires=[
