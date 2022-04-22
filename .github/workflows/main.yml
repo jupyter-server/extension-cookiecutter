@@ -76,17 +76,12 @@ jobs:
           python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['author_name']='foo'; d['author_email']='bar@foo.com'; cookiecutter('.', extra_context=d, no_input=True)"
           cd my_server_extension
           pip install jupyter_server
-          jupyter lab clean --all
-          python -m build --sdist
-          cd dist
-          pip install my_server_extension-0.1.0.tar.gz
+          pip install dist/*.tar.gz
 
       - name: Check install tarball method
         run: |
           jupyter server extension list
           jupyter server extension list 2>&1 | grep -ie "my_server_extension.*OK"
-
-          cp my_server_extension/dist/*.tar.gz my_server_extension.tar.gz
 
           pip uninstall -y my_server_extension
           jupyter server extension list 2>&1 | grep -ie "my_server_extension.*OK" && exit 1
