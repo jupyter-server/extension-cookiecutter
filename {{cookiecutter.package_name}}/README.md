@@ -4,7 +4,9 @@
 {%- if cookiecutter.has_binder.lower().startswith('y') -%}
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/{{ cookiecutter.repository|replace("https://github.com/", "") }}/main
 {%- endif %}
+
 {{ cookiecutter.project_short_description }}
+
 ## Requirements
 
 - Jupyter Server

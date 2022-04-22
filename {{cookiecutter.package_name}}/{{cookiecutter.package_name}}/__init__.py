@@ -1,3 +1,4 @@
+"""{{cookiecutter.project_short_description}}"""
 from pathlib import Path
 
 from .handlers import setup_handlers
