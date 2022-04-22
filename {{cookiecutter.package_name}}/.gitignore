@@ -1,12 +1,5 @@
-*.bundle.*
-lib/
-node_modules/
-.eslintcache
-.stylelintcache
 *.egg-info/
 .ipynb_checkpoints
-*.tsbuildinfo
-{{cookiecutter.python_name}}/labextension
 
 # Created by https://www.gitignore.io/api/python
 # Edit at https://www.gitignore.io/?templates=python
@@ -23,11 +16,8 @@ __pycache__/
 # Distribution / packaging
 .Python
 build/
-develop-eggs/
 dist/
 downloads/
-eggs/
-.eggs/
 lib/
 lib64/
 parts/
@@ -37,8 +27,6 @@ wheels/
 pip-wheel-metadata/
 share/python-wheels/
 .installed.cfg
-*.egg
-MANIFEST
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

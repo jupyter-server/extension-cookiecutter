@@ -1,29 +1,17 @@
-import json
+"""{{cookiecutter.project_short_description}}"""
 from pathlib import Path
 
-from ._version import __version__{% if cookiecutter.kind.lower() == 'server' %}
 from .handlers import setup_handlers
-{% endif %}
+__version__ = "0.1.0"
+
 
 
 HERE = Path(__file__).parent.resolve()
 
 
-with (HERE / "labextension" / "package.json").open() as fid:
-    data = json.load(fid)
-
-
-def _jupyter_labextension_paths():
-    return [{
-        "src": "labextension",
-        "dest": data["name"]
-    }]
-{% if cookiecutter.kind.lower() == 'server' %}
-
-
 def _jupyter_server_extension_points():
     return [{
-        "module": "{{ cookiecutter.python_name }}"
+        "module": "{{ cookiecutter.package_name }}"
     }]
 
 
@@ -32,8 +20,8 @@ def _load_jupyter_server_extension(server_app):
 
     Parameters
     ----------
-    server_app: jupyterlab.labapp.LabApp
-        JupyterLab application instance
+    server_app: ServerApp or ExtensionApp
+        Jupyter Server application instance
     """
     setup_handlers(server_app.web_app)
     server_app.log.info("Registered {name} server extension".format(**data))
@@ -41,4 +29,3 @@ def _load_jupyter_server_extension(server_app):
 
 # For backward compatibility with notebook server - useful for Binder/JupyterHub
 load_jupyter_server_extension = _load_jupyter_server_extension
-{% endif %}

@@ -1,6 +1,6 @@
-# Making a new release of {{ cookiecutter.python_name }}
+# Making a new release of {{ cookiecutter.package_name }}
 
-The extension can be published to `PyPI` and `npm` manually or using the [Jupyter Releaser](https://github.com/jupyter-server/jupyter_releaser).
+The extension can be published to `PyPI` manually or using the [Jupyter Releaser](https://github.com/jupyter-server/jupyter_releaser).
 
 ## Manual release
 
