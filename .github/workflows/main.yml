@@ -46,7 +46,9 @@ jobs:
           jupyter server extension list
           jupyter server extension list 2>&1 | grep -ie "my_server_extension.*OK"
 
-          pip uninstall -y my_server_extension jupyter_server
+          pip uninstall -y my_server_extension
+          jupyter server extension list 2>&1 | grep -ie "my_server_extension.*OK" && exit 1
+          pip uninstall -y my_server_extension
           rm -rf my_server_extension
 
       - name: Create server extension pip develop
@@ -62,6 +64,11 @@ jobs:
         run: |
           jupyter server extension list
           jupyter server extension list 2>&1 | grep -ie "my_server_extension.*OK"
+
+          pip uninstall -y my_server_extension
+          jupyter server extension list 2>&1 | grep -ie "my_server_extension.*OK" && exit 1
+          pip uninstall -y my_server_extension
+          rm -rf my_server_extension
 
       - name: Install server extension from a tarball
         run: |
@@ -80,7 +87,10 @@ jobs:
           jupyter server extension list 2>&1 | grep -ie "my_server_extension.*OK"
 
           cp my_server_extension/dist/*.tar.gz my_server_extension.tar.gz
-          pip uninstall -y my_server_extension jupyter_server
+
+          pip uninstall -y my_server_extension
+          jupyter server extension list 2>&1 | grep -ie "my_server_extension.*OK" && exit 1
+          pip uninstall -y my_server_extension
           rm -rf my_server_extension
 
       - uses: actions/upload-artifact@v2
