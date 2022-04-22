@@ -17,6 +17,8 @@ jobs:
       - name: Install Dependencies
         run: |
           pip install -e .
+      {# Escape double curly brace #}
+      {% raw %}
       - name: Check Release
         if: ${{ matrix.group == 'check_release' }}
         uses: jupyter-server/jupyter_releaser/.github/actions/check-release@v1
@@ -25,3 +27,9 @@ jobs:
       - name: Run Link Check
         if: ${{ matrix.group == 'link_check' }}
         uses: jupyter-server/jupyter_releaser/.github/actions/check-links@v1
+      {% endraw %}
+      - name: Upload Distributions
+        uses: actions/upload-artifact@v2
+        with:
+          name: {{ cookiecutter.python_name }}-releaser-dist-${{ '{{ github.run_number }}' }}
+          path: .jupyter_releaser_checkout/dist
