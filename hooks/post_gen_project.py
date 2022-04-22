@@ -6,7 +6,7 @@ PROJECT_DIRECTORY = Path.cwd()
 
 def remove_path(path: str) -> None:
     """Remove the provided path.
-    
+
     If the target path is a directory, remove it recursively.
     """
     if path.is_file():
