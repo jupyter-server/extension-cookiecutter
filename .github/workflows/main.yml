@@ -53,7 +53,6 @@ jobs:
           cd my_server_extension
           pip install -e .
           pip install jupyter_server
-          jupyter server extension enable my_server_extension
 
       - name: Check pip develop method
         run: |
