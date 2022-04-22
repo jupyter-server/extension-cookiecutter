@@ -35,8 +35,8 @@ jobs:
         run: |
           # Trick to use custom parameters
           python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['kind']='server'; cookiecutter('.', extra_context=d, no_input=True)"
-          cat pyproject.toml
           cd my_server_extension
+          cat pyproject.toml
           pip install .
           pip install jupyter_server
 
