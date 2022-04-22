@@ -29,18 +29,17 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install cookiecutter check-manifest build
+          python -m pip install cookiecutter build jupyter_server
 
-      - name: Create server extension pip install
+      - name: Install Package
         run: |
           # Trick to use custom parameters
           python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['author_name']='foo'; d['author_email']='bar@foo.com'; cookiecutter('.', extra_context=d, no_input=True)"
           cd my_server_extension
           cat pyproject.toml
           pip install .
-          pip install jupyter_server
 
-      - name: Check pip install method
+      - name: Test Installed Package
         run: |
           set -eux
           jupyter server extension list
@@ -51,16 +50,15 @@ jobs:
           pip uninstall -y my_server_extension
           rm -rf my_server_extension
 
-      - name: Create server extension pip develop
+      - name: Install Editable Package
         run: |
           # Trick to use custom parameters
           python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['author_name']='foo'; d['author_email']='bar@foo.com'; cookiecutter('.', extra_context=d, no_input=True)"
           cd my_server_extension
           cat pyproject.toml
           pip install -e .
-          pip install jupyter_server
 
-      - name: Check pip develop method
+      - name: Test Editable Install
         run: |
           jupyter server extension list
           jupyter server extension list 2>&1 | grep -ie "my_server_extension.*OK"
@@ -70,7 +68,7 @@ jobs:
           pip uninstall -y my_server_extension
           rm -rf my_server_extension
 
-      - name: Install server extension from sdist
+      - name: Build and Install from Sdist
         run: |
           # Trick to use custom parameters
           python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['author_name']='foo'; d['author_email']='bar@foo.com'; cookiecutter('.', extra_context=d, no_input=True)"
@@ -82,7 +80,7 @@ jobs:
           # Copy the sdist so we can upload it
           cp dist/*.tar.gz ../my_server_extension.tar.gz
 
-      - name: Check install tarball method
+      - name: Test Sdist Install
         run: |
           jupyter server extension list
           jupyter server extension list 2>&1 | grep -ie "my_server_extension.*OK"

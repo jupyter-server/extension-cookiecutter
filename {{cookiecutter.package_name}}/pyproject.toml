@@ -29,3 +29,6 @@ Home = "{{cookiecutter.repository}}"
 
 [tool.flit.external-data]
 directory = "external_data"
+
+[tool.jupyter_releaser]
+skip = ["check-links"]
