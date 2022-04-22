@@ -63,16 +63,6 @@ jobs:
           jupyter server extension list
           jupyter server extension list 2>&1 | grep -ie "my_server_extension.*OK"
 
-      - name: Build server extension in develop mode
-        run: |
-          jupyter labextension develop ./my_server_extension --overwrite
-          jupyter labextension build ./my_server_extension
-
-          jupyter labextension uninstall my_server_extension
-          pip uninstall -y my_server_extension jupyter_server
-
-          python -c "import shutil; shutil.rmtree('my_server_extension')"
-
       - name: Install server extension from a tarball
         run: |
           # Trick to use custom parameters
