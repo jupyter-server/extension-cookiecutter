@@ -70,13 +70,17 @@ jobs:
           pip uninstall -y my_server_extension
           rm -rf my_server_extension
 
-      - name: Install server extension from a tarball
+      - name: Install server extension from sdist
         run: |
           # Trick to use custom parameters
           python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['author_name']='foo'; d['author_email']='bar@foo.com'; cookiecutter('.', extra_context=d, no_input=True)"
           cd my_server_extension
-          pip install jupyter_server
+          pip install jupyter_server build
+          python -m build --sdist .
           pip install dist/*.tar.gz
+
+          # Copy the sdist so we can upload it
+          cp dist/*.tar.gz ../my_server_extension.tar.gz
 
       - name: Check install tarball method
         run: |
