@@ -30,7 +30,7 @@ Home = "{{cookiecutter.repository}}"
 [tool.hatch.version]
 path = "{{ cookiecutter.package_name }}/__init__.py"
 
-[tool.hatch.build.targets.wheel.shared_data]
+[tool.hatch.build.targets.wheel.shared-data]
 "jupyter-config" = "etc/jupyter"
 
 [tool.jupyter_releaser]
