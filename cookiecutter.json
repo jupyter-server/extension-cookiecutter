@@ -1,6 +1,6 @@
 {
-  "author_name": "",
-  "author_email": "",
+  "author_name": "My Name",
+  "author_email": "me@me.com",
   "package_name": "my_server_extension",
   "project_short_description": "A Jupyter Server extension.",
   "has_binder": "n",
