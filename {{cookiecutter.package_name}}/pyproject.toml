@@ -27,6 +27,9 @@ file="LICENSE"
 [project.urls]
 Home = "{{cookiecutter.repository}}"
 
+[tool.hatch.version]
+path = "my_server_extension/__init__.py"
+
 [tool.hatch.build.targets.wheel.shared_data]
 "jupyter-config" = "etc/jupyter"
 
