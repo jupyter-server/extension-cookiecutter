@@ -21,6 +21,12 @@ classifiers = [
 ]
 dependencies = ["jupyter_server>=1.6,<2"]
 
+[project.optional-dependencies]
+test = [
+  "pytest",
+  "jupyter_server[test]"
+]
+
 [project.license]
 file="LICENSE"
 
