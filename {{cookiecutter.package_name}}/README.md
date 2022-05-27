@@ -77,7 +77,7 @@ To run the python tests, use:
 pytest
 
 # To test a specific file
-pytest {{ cookiecutter.package_name }}/tests/test_handlers.py 
+pytest {{ cookiecutter.package_name }}/tests/test_handlers.py
 
 # To run a specific test
 pytest {{ cookiecutter.package_name }}/tests/test_handlers.py -k "test_get"

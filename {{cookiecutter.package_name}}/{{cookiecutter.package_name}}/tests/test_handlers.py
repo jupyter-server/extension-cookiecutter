@@ -3,7 +3,7 @@ import json
 
 async def test_get(jp_fetch):
     response = await jp_fetch(
-        "{{ cookiecutter.package_name | replace('-', '_') }}", 
+        "{{ cookiecutter.package_name | replace('-', '_') }}",
         "get_example"
     )
 
