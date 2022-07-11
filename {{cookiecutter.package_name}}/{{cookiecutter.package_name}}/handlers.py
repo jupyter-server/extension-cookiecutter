@@ -5,12 +5,16 @@ from jupyter_server.base.handlers import APIHandler
 import tornado
 
 
-class RouteHandler(ExtensionHandlerMixin, APIHandler):
+class PingHandler(ExtensionHandlerMixin, APIHandler):
     # The following decorator should be present on all verb methods (head, get, post,
     # patch, put, delete, options) to ensure only authorized user can request the
     # Jupyter server
+    @property
+    def ping_response(self):
+        return self.settings["ping_response"]
+
     @tornado.web.authenticated
     def get(self):
         self.finish(json.dumps({
-            "data": "This is /{{ cookiecutter.package_name | replace('-', '_') }}/get_example endpoint!"
+            "ping_response": self.ping_response
         }))
