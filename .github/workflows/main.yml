@@ -47,7 +47,9 @@ jobs:
 
           pip uninstall -y my_server_extension
           jupyter server extension list 2>&1 | grep -ie "my_server_extension.*OK" && exit 1
+          pushd my_server_extension
           pytest
+          popd
           pip uninstall -y my_server_extension
           rm -rf my_server_extension
 
