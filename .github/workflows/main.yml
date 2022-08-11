@@ -37,7 +37,7 @@ jobs:
           python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['author_name']='foo'; d['author_email']='bar@foo.com'; cookiecutter('.', extra_context=d, no_input=True)"
           cd my_server_extension
           cat pyproject.toml
-          pip install .
+          pip install ".[test]"
 
       - name: Test Installed Package
         run: |
@@ -47,6 +47,9 @@ jobs:
 
           pip uninstall -y my_server_extension
           jupyter server extension list 2>&1 | grep -ie "my_server_extension.*OK" && exit 1
+          pushd my_server_extension
+          python -m pytest
+          popd
           pip uninstall -y my_server_extension
           rm -rf my_server_extension
 

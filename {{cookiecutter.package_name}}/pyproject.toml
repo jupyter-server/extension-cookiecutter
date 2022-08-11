@@ -48,7 +48,9 @@ profile = "black"
 [tool.pytest.ini_options]
 filterwarnings = [
   "error",
-  "ignore:There is no current event loop:DeprecationWarning"
+  "ignore:There is no current event loop:DeprecationWarning",
+  "module:make_current is deprecated:DeprecationWarning",
+  "module:clear_current is deprecated:DeprecationWarning",
 ]
 
 [tool.jupyter_releaser]
