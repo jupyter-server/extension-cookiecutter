@@ -1,7 +1,7 @@
 name: CI
 
 on:
-  push:
+  push: ["main"]
   pull_request:
   schedule:
     - cron: "0 0 * * *"
