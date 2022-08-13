@@ -1,11 +1,11 @@
 [build-system]
-requires = ["flit_core >=3.2,<4"]
-build-backend = "flit_core.buildapi"
+requires = ["hatchling>=1.0"]
+build-backend = "hatchling.build"
 
 [project]
 name = "{{cookiecutter.package_name}}"
 authors = [{name = "{{cookiecutter.author_name}}", email = "{{cookiecutter.author_email}}"}]
-dynamic = ["version", "description"]
+dynamic = ["version"]
 readme = "README.md"
 requires-python = ">=3.7"
 keywords = ["Jupyter", "Extension"]
@@ -21,14 +21,49 @@ classifiers = [
 ]
 dependencies = ["jupyter_server>=1.6,<2"]
 
+[project.optional-dependencies]
+test = [
+  "pytest",
+  "jupyter_server[test]"
+]
+
 [project.license]
 file="LICENSE"
 
 [project.urls]
 Home = "{{cookiecutter.repository}}"
 
-[tool.flit.external-data]
-directory = "external_data"
+[tool.hatch.version]
+path = "{{ cookiecutter.package_name }}/__init__.py"
+
+[tool.hatch.build.targets.wheel.shared-data]
+"jupyter-config" = "etc/jupyter"
+
+[tool.black]
+line_length = 100
+
+[tool.isort]
+profile = "black"
+
+[tool.pytest.ini_options]
+filterwarnings = [
+  "error",
+  "ignore:There is no current event loop:DeprecationWarning",
+  "module:make_current is deprecated:DeprecationWarning",
+  "module:clear_current is deprecated:DeprecationWarning",
+]
 
 [tool.jupyter_releaser]
 skip = ["check-links"]
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_incomplete_defs = true
+no_implicit_optional = true
+pretty = true
+show_error_context = true
+show_error_codes = true
+strict_equality = true
+warn_unused_configs = true
+warn_unused_ignores = true
+warn_redundant_casts = true
