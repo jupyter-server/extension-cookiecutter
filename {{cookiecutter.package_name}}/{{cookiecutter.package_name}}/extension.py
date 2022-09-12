@@ -8,7 +8,7 @@ class Extension(ExtensionApp):
 
     name = "{{ cookiecutter.package_name | replace('-', '_') }}"
     handlers = [
-        ("ping", PingHandler)
+        ("{{ cookiecutter.package_name | replace('_', '-') }}/ping", PingHandler)
     ]
 
     # Example of a configurable trait. This is meant to be replaced
