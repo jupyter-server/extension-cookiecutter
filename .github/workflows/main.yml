@@ -61,6 +61,11 @@ jobs:
           cat pyproject.toml
           pip install -e .
 
+          # Pre-commit check in the extension dir
+          git init && git add .
+          pip install pre-commit
+          pre-commit run --all-files --hook-stage=manual || pre-commit run --all-files --hook-stage=manual
+
       - name: Test Editable Install
         run: |
           jupyter server extension list

@@ -23,7 +23,7 @@ dependencies = ["jupyter_server>=1.6,<2"]
 
 [project.optional-dependencies]
 test = [
-  "pytest",
+  "pytest>=7.0",
   "jupyter_server[test]"
 ]
 
@@ -52,9 +52,6 @@ filterwarnings = [
   "module:make_current is deprecated:DeprecationWarning",
   "module:clear_current is deprecated:DeprecationWarning",
 ]
-
-[tool.jupyter_releaser]
-skip = ["check-links"]
 
 [tool.mypy]
 check_untyped_defs = true
