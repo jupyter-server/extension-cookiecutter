@@ -61,12 +61,10 @@ jobs:
           cat pyproject.toml
           pip install -e .
 
-          # Integrity checks
-          git init
+          # Pre-commit check in the extension dir
+          git init && git add .
           pip install pre-commit
-          pre-commit install
           pre-commit run --all-files --hook-stage=manual
-          pytest -vv
 
       - name: Test Editable Install
         run: |
