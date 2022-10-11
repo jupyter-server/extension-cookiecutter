@@ -29,9 +29,6 @@ jobs:
         python -m pip install .
         jupyter server extension list 2>&1 | grep -ie "{{ cookiecutter.package_name }}.*OK"
 
-        pip install pre-commit
-        pre-commit run --all-files --hook-stage=manual
-
         pip install build
         python -m build --sdist
         cp dist/*.tar.gz my_server_extension.tar.gz

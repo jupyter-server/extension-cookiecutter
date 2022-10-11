@@ -61,6 +61,11 @@ jobs:
           cat pyproject.toml
           pip install -e .
 
+          # Integrity checks
+          pip install pre-commit
+          pre-commit run --all-files --hook-stage=manual
+          pytest -vv
+
       - name: Test Editable Install
         run: |
           jupyter server extension list
