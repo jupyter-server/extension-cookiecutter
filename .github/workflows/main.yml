@@ -62,6 +62,7 @@ jobs:
           pip install -e .
 
           # Integrity checks
+          git init
           pip install pre-commit
           pre-commit run --all-files --hook-stage=manual
           pytest -vv
