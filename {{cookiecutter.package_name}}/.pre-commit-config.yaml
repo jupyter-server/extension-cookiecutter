@@ -1,6 +1,9 @@
+default_language_version:
+  node: system
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.2.0
+    rev: v4.3.0
     hooks:
       - id: end-of-file-fixer
       - id: check-case-conflict
@@ -16,7 +19,7 @@ repos:
       - id: trailing-whitespace
 
   - repo: https://github.com/psf/black
-    rev: 22.3.0
+    rev: 22.10.0
     hooks:
       - id: black
 
@@ -24,11 +27,10 @@ repos:
     rev: 5.10.1
     hooks:
       - id: isort
-        args: ["--profile", "black"]
         files: \.py$
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v0.950
+    rev: v0.982
     hooks:
       - id: mypy
         additional_dependencies: [types-requests]
@@ -45,21 +47,30 @@ repos:
       - id: mdformat
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v2.32.1
+    rev: v3.0.0
     hooks:
       - id: pyupgrade
         args: [--py37-plus]
 
-  - repo: https://github.com/pycqa/flake8
-    rev: 5.0.4
+  - repo: https://github.com/PyCQA/doc8
+    rev: v1.0.0
     hooks:
-      - id: flake8
+      - id: doc8
+        args: [--max-line-length=200]
+        exclude: docs/source/other/full-config.rst
+        stages: [manual]
+
+  - repo: https://github.com/john-hen/Flake8-pyproject
+    rev: 1.0.1
+    hooks:
+      - id: Flake8-pyproject
+        alias: flake8
         additional_dependencies:
           ["flake8-bugbear==22.6.22", "flake8-implicit-str-concat==0.2.0"]
         stages: [manual]
 
   - repo: https://github.com/sirosen/check-jsonschema
-    rev: 0.15.0
+    rev: 0.18.3
     hooks:
       - id: check-jsonschema
         name: "Check GitHub Workflows"
