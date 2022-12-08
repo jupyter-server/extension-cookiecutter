@@ -90,5 +90,4 @@ ignore = [
 
 [tool.ruff.per-file-ignores]
 # S101 Use of `assert` detected
-# F841 local variable 'foo' is assigned to but never used
-"tests/*" = ["S101", "F481"]
+"tests/*" = ["S101"]
