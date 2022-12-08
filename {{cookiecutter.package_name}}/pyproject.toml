@@ -69,11 +69,11 @@ warn_redundant_casts = true
 
 [tool.black]
 line-length = 100
-target-version = ["py37"]
+target-version = ["py38"]
 skip-string-normalization = true
 
 [tool.ruff]
-target-version = "py37"
+target-version = "py38"
 line-length = 100
 select = [
   "A", "B", "C", "E", "F", "FBT", "I", "N", "Q", "RUF", "S", "T",
