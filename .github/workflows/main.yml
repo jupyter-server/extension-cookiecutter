@@ -19,7 +19,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         # This will be used by the base setup action
-        python-version: ["3.7", "3.10"]
+        python-version: ["3.8", "3.11"]
 
     steps:
       - name: Checkout
@@ -94,6 +94,16 @@ jobs:
 
           pip uninstall -y my_server_extension
           jupyter server extension list 2>&1 | grep -ie "my_server_extension.*OK" && exit 1
+          pip uninstall -y my_server_extension
+          rm -rf my_server_extension
+
+      - name: Run the linters
+        run: |
+          # Trick to use custom parameters
+          python -c "from cookiecutter.main import cookiecutter; import json; f=open('cookiecutter.json'); d=json.load(f); f.close(); d['author_name']='foo'; d['author_email']='bar@foo.com'; cookiecutter('.', extra_context=d, no_input=True)"
+          cd my_server_extension
+          bash ./.github/workflows/lint.sh
+          cd ..
           pip uninstall -y my_server_extension
           rm -rf my_server_extension
 
